@@ -1,4 +1,5 @@
 import TrainingList from './components/TrainingList.jsx'
+import CustomersList from './components/CustomersList.jsx'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -23,7 +24,7 @@ function App() {
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <CssBaseline />  
-      <Container maxWidth="lg">
+      <Container maxWidth="xlg">
         <AppBar position='static'>
           <Toolbar>
             <Typography variant='h4'>
@@ -45,7 +46,7 @@ function App() {
           </TabPanel>
 
           <TabPanel value="2">
-            
+            <CustomersList />
           </TabPanel>
 
         </TabContext>
