@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { saveCustomer } from '../../customerapi'
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
  
 export default function AddCustomer(props) {
   const [open, setOpen] = useState(false);
@@ -43,7 +44,7 @@ export default function AddCustomer(props) {
 
   return (
     <>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="outlined" onClick={handleClickOpen} endIcon={<PlaylistAddIcon />}>
         Add Customer
       </Button>
       <Dialog

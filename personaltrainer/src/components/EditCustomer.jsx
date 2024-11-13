@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { updateCustomer } from '../../customerapi';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
  
 export default function EditCustomer(props) {
     const [open, setOpen] = useState(false);
@@ -52,7 +53,7 @@ export default function EditCustomer(props) {
 
   return (
     <>
-      <Button size="small" onClick={handleClickOpen}>
+      <Button size="small" onClick={handleClickOpen} endIcon={<ModeEditIcon />} >
         Edit
       </Button>
       <Dialog
