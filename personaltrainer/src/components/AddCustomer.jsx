@@ -35,6 +35,7 @@ export default function AddCustomer(props) {
     saveCustomer(customer)
     .then(() => {
         props.handleFetch();
+        if (props.onAdd) props.onAdd();
         handleClose()
     }) 
     .catch(err => console.error(err))
@@ -55,7 +56,6 @@ export default function AddCustomer(props) {
             margin="dense"
             name="firstname"
             label="Firstname"
-            value={customer.firstname}
             onChange={handleChange}
             fullWidth
             variant="standard"
@@ -64,7 +64,6 @@ export default function AddCustomer(props) {
             margin="dense"
             name="lastname"
             label="Lastname"
-            value={customer.lastname}
             onChange={handleChange}
             fullWidth
             variant="standard"
@@ -73,7 +72,6 @@ export default function AddCustomer(props) {
             margin="dense"
             name="email"
             label="E-Mail"
-            value={customer.email}
             onChange={handleChange}
             fullWidth
             variant="standard"
@@ -82,7 +80,6 @@ export default function AddCustomer(props) {
             margin="dense"
             name="phone"
             label="Phone Nr."
-            value={customer.phone}
             onChange={handleChange}
             fullWidth
             variant="standard"
@@ -91,7 +88,6 @@ export default function AddCustomer(props) {
             margin="dense"
             name="streetaddress"
             label="Address"
-            value={customer.streetaddress}
             onChange={handleChange}
             fullWidth
             variant="standard"
@@ -100,7 +96,6 @@ export default function AddCustomer(props) {
             margin="dense"
             name="postcode"
             label="Postcode"
-            value={customer.postcode}
             onChange={handleChange}
             fullWidth
             variant="standard"
@@ -109,7 +104,6 @@ export default function AddCustomer(props) {
             margin="dense"
             name="city"
             label="City"
-            value={customer.city}
             onChange={handleChange}
             fullWidth
             variant="standard"

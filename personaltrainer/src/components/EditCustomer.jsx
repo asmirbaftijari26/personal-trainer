@@ -44,6 +44,7 @@ export default function EditCustomer(props) {
     updateCustomer(props.data._links.customer.href, customer)
     .then(() => {
         props.handleFetch();
+        if (props.onEdit) props.onEdit();
         handleClose();
     })
     .catch(err => console.error(err))
