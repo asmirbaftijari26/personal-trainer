@@ -9,6 +9,7 @@ import AddCustomer from './AddCustomer.jsx';
 import EditCustomer from "./EditCustomer.jsx";
 import CheckIcon from '@mui/icons-material/Check';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddTraining from "./AddTraining.jsx";
 
 function CustomersList(){
     const [customers, setCustomers] = useState([]);
@@ -18,7 +19,7 @@ function CustomersList(){
     const [colDefs, setColDefs] = useState([
         { field: "firstname", filter: true, width: 130 },
         { field: "lastname", filter: true, width: 130 },
-        { field: "streetaddress", filter: true },
+        { field: "streetaddress", filter: true, width: 130},
         { field: "postcode", filter: true, width: 120 },
         { field: "city", filter: true, width: 110 },
         { field: "email", filter: true },
@@ -30,6 +31,10 @@ function CustomersList(){
         { 
             cellRenderer: params => <Button color="error" size="small" onClick={() => handleDelete(params.data._links.self.href)} endIcon={<DeleteIcon />}>Delete</Button>,
             width: 140 
+        },
+        { 
+            cellRenderer: params => <AddTraining handleFetch={handleFetch} key={params.data._links.self.href} customerHref={params.data._links.self.href} onAdd={() => handleSnackbarMessage("Training successfully added!")}/>,
+            width: 210  
         }
     ]);
     
