@@ -63,13 +63,49 @@ function CustomersList(){
         setSnackbarMessage(message);
         setOpen(true);
     }
+
+    const exportToCSV = () => {
+        const csvRows = [];
+        const headers = ["First Name", "Last Name", "Street Address", "Postcode", "City", "Email", "Phone"];
+        csvRows.push(headers.join(","));
+
+        customers.forEach(customer => {
+            const row = [
+                customer.firstname,
+                customer.lastname,
+                customer.streetaddress,
+                customer.postcode,
+                customer.city,
+                customer.email,
+                customer.phone
+            ];
+            csvRows.push(row.join(","));
+        });
+
+        const csvContent = csvRows.join("\n");
+        const blob = new Blob([csvContent], { type: "text/csv" });
+        const url = window.URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "customers.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
     
     return(
         <>
-            <AddCustomer 
-                handleFetch={handleFetch}
-                onAdd={() => handleSnackbarMessage("Customer successfully added!")}
-            />
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
+                <AddCustomer 
+                    handleFetch={handleFetch}
+                    onAdd={() => handleSnackbarMessage("Customer successfully added!")}
+                />
+                <Button variant="contained" color="primary" onClick={exportToCSV}>
+                    Export to CSV
+                </Button>
+            </div>
+            
             <div className="ag-theme-material" style={{ height: 500}}>
                 <AgGridReact 
                 rowData={customers}
