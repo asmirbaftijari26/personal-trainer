@@ -7,48 +7,48 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { updateCustomer } from '../../customerapi';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
- 
+
 export default function EditCustomer(props) {
-    const [open, setOpen] = useState(false);
-    const [customer, setCustomer] = useState({
-      firstname: "",
-      lastname: "",
-      email: "",
-      phone: "",
-      streetaddress:"",
-      postcode:"",
-      city:""
-    })
- 
+  const [open, setOpen] = useState(false);
+  const [customer, setCustomer] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+    streetaddress: "",
+    postcode: "",
+    city: ""
+  })
+
   const handleClickOpen = () => {
     setOpen(true);
     setCustomer({
-        firstname: props.data.firstname,
-        lastname: props.data.lastname,
-        email: props.data.email,
-        phone: props.data.phone,
-        streetaddress: props.data.streetaddress,
-        postcode: props.data.postcode,
-        city: props.data.city
+      firstname: props.data.firstname,
+      lastname: props.data.lastname,
+      email: props.data.email,
+      phone: props.data.phone,
+      streetaddress: props.data.streetaddress,
+      postcode: props.data.postcode,
+      city: props.data.city
     })
   };
- 
+
   const handleClose = () => {
     setOpen(false);
   };
- 
+
   const handleChange = (event) => {
-    setCustomer({...customer, [event.target.name]: event.target.value });
+    setCustomer({ ...customer, [event.target.name]: event.target.value });
   }
- 
+
   const handleSave = (event) => {
     updateCustomer(props.data._links.customer.href, customer)
-    .then(() => {
+      .then(() => {
         props.handleFetch();
         if (props.onEdit) props.onEdit();
         handleClose();
-    })
-    .catch(err => console.error(err))
+      })
+      .catch(err => console.error(err))
   }
 
   return (

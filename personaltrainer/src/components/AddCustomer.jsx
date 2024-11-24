@@ -7,7 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { saveCustomer } from '../../customerapi'
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
- 
+
 export default function AddCustomer(props) {
   const [open, setOpen] = useState(false);
   const [customer, setCustomer] = useState({
@@ -15,31 +15,31 @@ export default function AddCustomer(props) {
     lastname: "",
     email: "",
     phone: "",
-    streetaddress:"",
-    postcode:"",
-    city:""
+    streetaddress: "",
+    postcode: "",
+    city: ""
   })
- 
+
   const handleClickOpen = () => {
     setOpen(true);
   };
- 
+
   const handleClose = () => {
     setOpen(false);
   };
- 
+
   const handleChange = (event) => {
-    setCustomer({...customer, [event.target.name]: event.target.value });
+    setCustomer({ ...customer, [event.target.name]: event.target.value });
   }
- 
+
   const handleSave = (event) => {
     saveCustomer(customer)
-    .then(() => {
+      .then(() => {
         props.handleFetch();
         if (props.onAdd) props.onAdd();
         handleClose()
-    }) 
-    .catch(err => console.error(err))
+      })
+      .catch(err => console.error(err))
   }
 
   return (

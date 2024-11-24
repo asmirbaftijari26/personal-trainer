@@ -17,7 +17,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import { fetchCustomers } from '../../customerapi';
 
- 
+
 export default function AddTraining(props) {
   const [open, setOpen] = useState(false);
   const [training, setTraining] = useState({
@@ -35,8 +35,8 @@ export default function AddTraining(props) {
 
   const handleFetch = () => {
     fetchCustomers()
-    .then(data => setCustomers(data._embedded.customers))
-    .catch(err => console.error(err))
+      .then(data => setCustomers(data._embedded.customers))
+      .catch(err => console.error(err))
   }
 
   const handleClickOpen = () => {
@@ -48,37 +48,37 @@ export default function AddTraining(props) {
     }
     setOpen(true);
   };
- 
+
   const handleClose = () => {
     setOpen(false);
   };
- 
+
   const handleChange = (event) => {
-    setTraining({...training, [event.target.name]: event.target.value });
+    setTraining({ ...training, [event.target.name]: event.target.value });
   }
 
   const handleDateChange = (newDate) => {
     setTraining({ ...training, date: newDate });
   };
- 
+
   const handleSave = (event) => {
 
     const formattedDate = training.date ? dayjs(training.date).toISOString() : null;
-    
+
     const newTraining = {
       date: formattedDate,
       activity: training.activity,
       duration: training.duration,
       customer: training.customer
-  };
+    };
 
     saveTraining(newTraining)
-    .then(() => {
+      .then(() => {
         props.handleFetch();
         if (props.onAdd) props.onAdd();
         handleClose()
-    }) 
-    .catch(err => console.error(err))
+      })
+      .catch(err => console.error(err))
   }
 
   return (
@@ -92,7 +92,7 @@ export default function AddTraining(props) {
       >
         <DialogTitle>Add Training</DialogTitle>
         <DialogContent>
-        <DateTimePicker
+          <DateTimePicker
             label="Date & Time"
             value={training.date}
             onChange={handleDateChange}
