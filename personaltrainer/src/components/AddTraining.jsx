@@ -17,7 +17,6 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import { fetchCustomers } from '../../customerapi';
 
-
 export default function AddTraining(props) {
   const [open, setOpen] = useState(false);
   const [training, setTraining] = useState({
